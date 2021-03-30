@@ -3,7 +3,12 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:4040';
 
 function fetch() {
-  let url = `/contacts`;
-  return axios.get(url).then(response => console.log(response));
+  let url = '/contacts';
+  return axios.get(url).then(response => console.log(response.data));
 }
-export default { fetch };
+
+function fetch2() {
+  let url = '/contacts';
+  return axios.get(url).then(response => response.data);
+}
+export default { fetch, fetch2 };

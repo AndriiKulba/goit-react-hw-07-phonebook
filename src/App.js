@@ -12,8 +12,9 @@ import API from '../src/Api';
 
 class App extends Component {
   componentDidMount() {
-    // this.props.fetchTodos();
-    API.fetch().then(data => console.log(data));
+    this.props.fetchTodos();
+    API.fetch();
+    API.fetch2().then(data => console.log(data));
   }
   render() {
     return (
