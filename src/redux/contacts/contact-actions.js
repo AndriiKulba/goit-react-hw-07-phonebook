@@ -9,17 +9,29 @@ export const fetchContactsSuccess = createAction(
 );
 export const fetchContactsError = createAction('contacts/fetchContactsError');
 
-export const addContact = createAction(
-  'contacts/addContact',
-  (name, number) => ({
-    payload: {
-      id: uuidv4(),
-      name: name,
-      number: number,
-    },
-  }),
+export const addContactsRequest = createAction('contacts/addContactsRequest');
+export const addContactsSuccess = createAction('contacts/addContactsSuccess');
+export const addContactsError = createAction('contacts/addContactsError');
+
+export const deleteContactsRequest = createAction(
+  'contacts/deleteContactsRequest',
 );
-export const deleteContact = createAction('contacts/deleteContact');
+export const deleteContactsSuccess = createAction(
+  'contacts/deleteContactsSuccess',
+);
+export const deleteContactsError = createAction('contacts/deleteContactsError');
+
+// export const addContact = createAction(
+//   'contacts/addContact',
+//   (name, number) => ({
+//     payload: {
+//       id: uuidv4(),
+//       name: name,
+//       number: number,
+//     },
+//   }),
+// );
+// export const deleteContact = createAction('contacts/deleteContact');
 export const addValue = (name, value) => ({
   type: `values/add${name}`,
   payload: value,

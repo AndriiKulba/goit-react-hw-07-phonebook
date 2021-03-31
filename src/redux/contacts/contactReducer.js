@@ -4,23 +4,22 @@ import {
   fetchContactsRequest,
   fetchContactsSuccess,
   fetchContactsError,
-  addContact,
-  deleteContact,
+  addContactsRequest,
+  addContactsSuccess,
+  addContactsError,
+  deleteContactsRequest,
+  deleteContactsSuccess,
+  deleteContactsError,
   addValue,
   resetValue,
 } from './contact-actions';
 
-const initialState = [
-  { id: 'id-1', name: 'Annie Copeland', number: '227-91-26' },
-  { id: 'id-2', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-3', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-4', name: 'Rosie Simpson', number: '459-12-56' },
-];
+const initialState = [];
 const contacts = createReducer(initialState, {
   [fetchContactsSuccess]: (_, { payload }) => payload,
-  [addContact]: (state, { payload }) => [...state, payload],
-  [deleteContact]: (state, { payload }) =>
-    state.filter(contact => contact.id !== payload),
+  [addContactsSuccess]: (state, { payload }) => [...state, payload],
+  [deleteContactsSuccess]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 });
 const name = createReducer('', {
   'values/addname': (_, { payload }) => payload,

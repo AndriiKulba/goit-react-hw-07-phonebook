@@ -7,14 +7,12 @@ import ContactList from './components/ContactList';
 import Filter from './components/Filter';
 import ContactItem from './components/ContactItem';
 import contactsOperations from './redux/contacts/contact-operations';
-import API from '../src/Api';
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchTodos();
-    API.fetch();
-    API.fetch2().then(data => console.log(data));
+    this.props.fetchContacts();
   }
   render() {
     return (
@@ -32,7 +30,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchTodos: () => dispatch(contactsOperations.fetchContacts()),
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 });
 
 export default connect(null, mapDispatchToProps)(App);

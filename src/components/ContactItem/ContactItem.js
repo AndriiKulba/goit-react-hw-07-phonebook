@@ -6,7 +6,7 @@ import grey from '@material-ui/core/colors/grey';
 import s from './ContactItem.module.css';
 import { connect } from 'react-redux';
 
-import { deleteContact } from '../../redux/contacts/contact-actions';
+import operations from '../../redux/contacts/contact-operations';
 
 const ContactItem = ({ contacts, deleteContact }) => {
   return (
@@ -52,7 +52,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  deleteContact: id => dispatch(deleteContact(id)),
+  deleteContact: id => dispatch(operations.deleteContact(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactItem);

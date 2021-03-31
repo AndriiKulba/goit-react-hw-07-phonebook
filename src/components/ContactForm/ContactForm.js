@@ -6,11 +6,8 @@ import s from './ContactForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 
-import {
-  addContact,
-  addValue,
-  resetValue,
-} from '../../redux/contacts/contact-actions';
+import { addValue, resetValue } from '../../redux/contacts/contact-actions';
+import operations from '../../redux/contacts/contact-operations';
 
 const nameInputID = uuidv4();
 const numberInputID = uuidv4();
@@ -87,7 +84,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addContact: (name, number) => dispatch(addContact(name, number)),
+  addContact: (name, number) => dispatch(operations.addContact(name, number)),
   handleChange: e => dispatch(addValue(e.target.name, e.target.value)),
   resetValue: value => dispatch(resetValue(value)),
 });
