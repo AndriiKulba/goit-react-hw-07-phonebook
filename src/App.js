@@ -6,8 +6,8 @@ import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
 import ContactItem from './components/ContactItem';
-import contactsOperations from './redux/contacts/contact-operations';
-
+import Loader from './components/Loader';
+import { operations, selectors } from './redux/contacts';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -20,7 +20,10 @@ class App extends Component {
         <Container>
           <ContactForm title="Phonebook" />
           <ContactList title="Contacts">
-            <Filter />
+            <div className="filter_container">
+              <Filter />
+              {this.props.isLoading && <Loader />}
+            </div>
             <ContactItem />
           </ContactList>
         </Container>
@@ -29,8 +32,12 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
+const mapStateToProps = state => ({
+  isLoading: selectors.getLoading(state),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  fetchContacts: () => dispatch(operations.fetchContacts()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

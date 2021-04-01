@@ -9,8 +9,6 @@ import {
   deleteContactsRequest,
   deleteContactsSuccess,
   deleteContactsError,
-  addValue,
-  resetValue,
 } from './contact-actions';
 
 axios.defaults.baseURL = 'http://localhost:4040';
@@ -31,16 +29,6 @@ const addContact = (name, number) => dispatch => {
     .then(({ data }) => dispatch(addContactsSuccess(data)))
     .catch(error => dispatch(addContactsError(error)));
 };
-// const addContact = createAction(
-//   'contacts/addContact',
-//   (name, number) => ({
-//     payload: {
-//       id: uuidv4(),
-//       name: name,
-//       number: number,
-//     },
-//   }),
-// );
 
 const deleteContact = contactId => dispatch => {
   dispatch(deleteContactsRequest());
@@ -49,7 +37,6 @@ const deleteContact = contactId => dispatch => {
     .then(({ data }) => dispatch(deleteContactsSuccess(contactId)))
     .catch(error => dispatch(deleteContactsError(error)));
 };
-// export const deleteContact = createAction('contacts/deleteContact');
 
 export default {
   fetchContacts,

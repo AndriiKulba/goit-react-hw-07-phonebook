@@ -5,7 +5,7 @@ import grey from '@material-ui/core/colors/grey';
 import s from './Filter.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
-import { addValue, resetValue } from '../../redux/contacts/contact-actions';
+import { selectors, addValue, resetValue } from '../../redux/contacts';
 
 const filterInputID = uuidv4();
 class Filter extends Component {
@@ -37,7 +37,7 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  filter: state.state.filter,
+  filter: selectors.getFilter(state),
 });
 
 const mapDispatchToProps = dispatch => ({

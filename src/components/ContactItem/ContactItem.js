@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import Loader from '../Loader';
 import Icon from '@material-ui/core/Icon';
 import grey from '@material-ui/core/colors/grey';
 import s from './ContactItem.module.css';
 import { connect } from 'react-redux';
+import { operations, selectors } from '../../redux/contacts';
 
-import operations from '../../redux/contacts/contact-operations';
-
-const ContactItem = ({ contacts, deleteContact }) => {
+const ContactItem = ({ contacts, deleteContact, isLoading }) => {
   return (
     <ul className={s.contacts__list}>
       {contacts.map(({ id, name, number }) => {
@@ -38,18 +37,10 @@ ContactItem.propTypes = {
   ),
   deleteContact: PropTypes.func.isRequired,
 };
-const getvisibleContacts = (contacts, filter) => {
-  return contacts
-    .filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()),
-    )
-    .sort((a, b) => (a.name !== b.name ? (a.name < b.name ? -1 : 1) : 0));
-};
-const mapStateToProps = state => {
-  const { contacts, filter } = state.state;
-  const visibleContacts = getvisibleContacts(contacts, filter);
-  return { contacts: visibleContacts };
-};
+
+const mapStateToProps = state => ({
+  contacts: selectors.getvisibleContacts(state),
+});
 
 const mapDispatchToProps = dispatch => ({
   deleteContact: id => dispatch(operations.deleteContact(id)),

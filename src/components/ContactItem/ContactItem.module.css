@@ -3,6 +3,7 @@
   list-style: none;
   text-align: left;
   padding: 10px;
+  margin-bottom: 10px;
   overflow-y: auto;
   /* border: 1px solid grey; */
   border-radius: 2%;
@@ -31,4 +32,8 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+.loader {
+  text-align: center;
 }

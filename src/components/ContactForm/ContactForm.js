@@ -5,9 +5,12 @@ import grey from '@material-ui/core/colors/grey';
 import s from './ContactForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
-
-import { addValue, resetValue } from '../../redux/contacts/contact-actions';
-import operations from '../../redux/contacts/contact-operations';
+import {
+  selectors,
+  operations,
+  addValue,
+  resetValue,
+} from '../../redux/contacts';
 
 const nameInputID = uuidv4();
 const numberInputID = uuidv4();
@@ -78,9 +81,9 @@ ContactForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  contacts: state.state.contacts,
-  name: state.state.name,
-  number: state.state.number,
+  contacts: selectors.getContacts(state),
+  name: selectors.getName(state),
+  number: selectors.getNumber(state),
 });
 
 const mapDispatchToProps = dispatch => ({
